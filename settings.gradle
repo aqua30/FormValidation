@@ -5,11 +5,35 @@ pluginManagement {
         mavenCentral()
     }
 }
+//enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+    }
+    versionCatalogs {
+        libs {
+            version('compose','1.4.0')
+            version('composeui','1.1.1')
+            version('lifecycle','2.4.1')
+            version('ktx','1.7.0')
+            library('core-ktx','androidx.core','core-ktx').versionRef('ktx')
+            library('compose-ui','androidx.compose.ui','ui').versionRef('composeui')
+            library('compose-ui-tooling','androidx.compose.ui','ui-tooling-preview').versionRef('composeui')
+            library('compose-material','androidx.compose.material','material').versionRef('composeui')
+            library('compose-activity','androidx.activity','activity-compose').versionRef('compose')
+            library('lifecycle-runtime','androidx.lifecycle','lifecycle-runtime-ktx').versionRef('lifecycle')
+            library('lifecycle-viewmodel-compose','androidx.lifecycle','lifecycle-viewmodel-compose').versionRef('lifecycle')
+            bundle(
+                    'compose',
+                    ['compose-ui','compose-ui-tooling','compose-material','compose-activity']
+            )
+            bundle(
+                    'lifecyle',
+                    ['lifecycle-runtime','lifecycle-viewmodel-compose']
+            )
+        }
     }
 }
 rootProject.name = "FormValidation"
